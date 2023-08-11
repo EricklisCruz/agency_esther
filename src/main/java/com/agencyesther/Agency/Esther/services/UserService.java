@@ -2,6 +2,7 @@ package com.agencyesther.Agency.Esther.services;
 
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import com.agencyesther.Agency.Esther.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    @Transactional
     public User insert(User user) {
         String bCrypPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bCrypPassword);

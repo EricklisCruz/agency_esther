@@ -2,6 +2,7 @@ package com.agencyesther.Agency.Esther.controllers;
 
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import com.agencyesther.Agency.Esther.services.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @Transactional
     @PostMapping
     public ResponseEntity<User> insertUser(@RequestBody @Validated User user, UriComponentsBuilder uriComponentsBuilder) {
         user = userService.insert(user);

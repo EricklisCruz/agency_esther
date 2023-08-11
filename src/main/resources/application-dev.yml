@@ -2,7 +2,7 @@ spring:
   jpa:
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create
     show-sql: true
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/agency_esther

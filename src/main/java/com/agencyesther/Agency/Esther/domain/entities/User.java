@@ -3,6 +3,7 @@ package com.agencyesther.Agency.Esther.domain.entities;
 
 
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,18 +46,28 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
     private Integer age;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Phone> phone = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole userRole;
+    private String lastPhone;
 
-    public User(String name, String surname, String email, String password, Integer age, UserRole userRole) {
+    public User(String name, String surname, String email, String password, String lastPhone, Integer age, UserRole userRole) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.lastPhone = lastPhone;
         this.age = age;
         this.userRole = userRole;
+
+    }
+
+    public void addPhone(Phone phon) {
+        phon.setNumber(lastPhone);
+        phon.setUser(this);
+        if (phone == null) phone.add(phon);
     }
 }

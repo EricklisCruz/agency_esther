@@ -1,8 +1,8 @@
 package com.agencyesther.Agency.Esther.domain.entities;
 
 
-
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
+import com.agencyesther.Agency.Esther.dto.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -40,10 +39,10 @@ public class User implements Serializable {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Email
     @Column(unique = true,nullable = false)
     private String email;
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     private Integer age;
     @JsonIgnore
@@ -63,6 +62,16 @@ public class User implements Serializable {
         this.age = age;
         this.userRole = userRole;
 
+    }
+
+    public User(UserRegistrationDTO userRegistrationDTO) {
+        this.name = userRegistrationDTO.getName();
+        this.surname = userRegistrationDTO.getSurname();
+        this.email = userRegistrationDTO.getEmail();
+        this.password = userRegistrationDTO.getPassword();
+        this.lastPhone = userRegistrationDTO.getLastPhone();
+        this.age = userRegistrationDTO.getAge();
+        this.userRole = userRegistrationDTO.getUserRole();
     }
 
     public void addPhone(Phone phon) {

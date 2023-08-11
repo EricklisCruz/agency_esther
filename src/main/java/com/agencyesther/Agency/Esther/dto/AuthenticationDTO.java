@@ -1,4 +1,4 @@
-package com.agencyesther.Agency.Esther.domain.dto;
+package com.agencyesther.Agency.Esther.dto;
 
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import lombok.Getter;

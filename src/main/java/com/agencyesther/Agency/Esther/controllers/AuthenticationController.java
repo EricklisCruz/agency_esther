@@ -1,9 +1,8 @@
 package com.agencyesther.Agency.Esther.controllers;
 
-import com.agencyesther.Agency.Esther.domain.dto.AuthenticationDTO;
+import com.agencyesther.Agency.Esther.dto.AuthenticationDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

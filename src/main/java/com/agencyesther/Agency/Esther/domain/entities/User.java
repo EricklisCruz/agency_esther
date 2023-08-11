@@ -44,6 +44,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     @JsonIgnore
     private String password;
+    @Column(length = 2, nullable = false)
     private Integer age;
     @JsonIgnore
     @OneToMany(mappedBy = "user")

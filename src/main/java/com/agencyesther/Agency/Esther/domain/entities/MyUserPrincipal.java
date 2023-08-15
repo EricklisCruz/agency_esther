@@ -20,9 +20,9 @@ public record MyUserPrincipal(User user) implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.user.getUserRole() == UserRole.ADMIN_ROLE) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
-                new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (user.getUserRole() == UserRole.ADMIN_ROLE) return List.of(new SimpleGrantedAuthority("ADMIN_ROLE"),
+                new SimpleGrantedAuthority("USER_ROLE"));
+        else return List.of(new SimpleGrantedAuthority("USER_ROLE"));
     }
 
     @Override

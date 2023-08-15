@@ -18,6 +18,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ericklis
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/users")
@@ -28,7 +31,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserRegistrationDTO>> findAllUsers() {
         List<User> users = userService.findAllUsers();
-        List<UserRegistrationDTO> usersDTO = users.stream().map(UserRegistrationDTO::new).toList();
+        List<UserRegistrationDTO> usersDTO = users.stream().map(UserRegistrationDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTO);
     }
 

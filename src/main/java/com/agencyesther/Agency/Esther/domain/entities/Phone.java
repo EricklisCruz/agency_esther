@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-
+/**
+ * @author Ericklis
+ */
 @Entity
 @Data
 @NoArgsConstructor

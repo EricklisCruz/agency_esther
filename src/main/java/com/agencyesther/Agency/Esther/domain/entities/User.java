@@ -2,7 +2,6 @@ package com.agencyesther.Agency.Esther.domain.entities;
 
 
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
-import com.agencyesther.Agency.Esther.dto.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,16 +14,22 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ericklis
+ */
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User implements Serializable {
@@ -39,11 +44,11 @@ public class User implements Serializable {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Column(unique = true,nullable = false)
-    private String email;
+    @Column(unique = true, nullable = false)
+    private String login;
     @Column(nullable = false)
     @JsonIgnore
-    private String password;
+    private String passwordd;
     @Column(length = 2, nullable = false)
     private Integer age;
     @JsonIgnore
@@ -54,25 +59,15 @@ public class User implements Serializable {
     private UserRole userRole;
     private String lastPhone;
 
-    public User(String name, String surname, String email, String password, String lastPhone, Integer age, UserRole userRole) {
+    public User(String name, String surname, String login, String passwordd, String lastPhone, Integer age, UserRole userRole) {
         this.name = name;
         this.surname = surname;
-        this.email = email;
-        this.password = password;
+        this.login = login;
+        this.passwordd = passwordd;
         this.lastPhone = lastPhone;
         this.age = age;
         this.userRole = userRole;
 
-    }
-
-    public User(UserRegistrationDTO userRegistrationDTO) {
-        this.name = userRegistrationDTO.getName();
-        this.surname = userRegistrationDTO.getSurname();
-        this.email = userRegistrationDTO.getEmail();
-        this.password = userRegistrationDTO.getPassword();
-        this.lastPhone = userRegistrationDTO.getLastPhone();
-        this.age = userRegistrationDTO.getAge();
-        this.userRole = userRegistrationDTO.getUserRole();
     }
 
     public void addPhone(Phone phon) {
@@ -80,4 +75,5 @@ public class User implements Serializable {
         phon.setUser(this);
         if (phone == null) phone.add(phon);
     }
+
 }

@@ -1,18 +1,23 @@
 package com.agencyesther.Agency.Esther.domain.entities;
 
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 
-@RequiredArgsConstructor
-public class MyUserPrincipal implements UserDetails {
+/**
+ * @author Ericklis
+ */
 
-    private final User user;
+public record MyUserPrincipal(User user) implements UserDetails {
+
+    @Serial
+    private static final long serialVersionUID = 6043457173208758465L;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.user.getUserRole() == UserRole.ADMIN_ROLE) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
@@ -22,12 +27,12 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return user.getPasswordd();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getLogin();
     }
 
     @Override

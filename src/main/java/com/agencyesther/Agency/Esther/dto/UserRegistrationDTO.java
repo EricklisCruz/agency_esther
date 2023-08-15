@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+/**
+ * @author Ericklis
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class UserRegistrationDTO {
     @NotBlank
     private String surname;
     @Email
-    private String email;
+    private String login;
     @NotBlank
     private String password;
     @Pattern(regexp = "^\\d{10,11}")
@@ -30,8 +32,8 @@ public class UserRegistrationDTO {
     public UserRegistrationDTO(User user) {
         this.name = user.getName();
         this.surname = user.getSurname();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
+        this.login = user.getLogin();
+        this.password = user.getPasswordd();
         this.lastPhone = user.getLastPhone();
         this.age = user.getAge();
         this.userRole = user.getUserRole();

@@ -9,7 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * @author Ericklis
+ */
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -23,15 +25,15 @@ public class UserService {
 
     @Transactional
     public User insert(User user) {
-        String bCrypPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(bCrypPassword);
+        String bCrypPassword = new BCryptPasswordEncoder().encode(user.getPasswordd());
+        user.setPasswordd(bCrypPassword);
         return userRepository.save(user);
     }
 
     public User fromDto(UserRegistrationDTO userRegistrationDTO) {
         return new User(userRegistrationDTO.getName(),
                 userRegistrationDTO.getSurname(),
-                userRegistrationDTO.getEmail(),
+                userRegistrationDTO.getLogin(),
                 userRegistrationDTO.getPassword(),
                 userRegistrationDTO.getLastPhone(),
                 userRegistrationDTO.getAge(),

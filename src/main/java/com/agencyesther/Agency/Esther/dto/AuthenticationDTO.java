@@ -2,15 +2,12 @@ package com.agencyesther.Agency.Esther.dto;
 
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
-public class AuthenticationDTO {
+/**
+ * @author Ericklis
+ */
 
-    private String login;
-    private String password;
+public record AuthenticationDTO(String login, String password) {
 
-    public AuthenticationDTO(User user) {
-        this.login = user.getEmail();
-        this.password = user.getPassword();
-    }
 }

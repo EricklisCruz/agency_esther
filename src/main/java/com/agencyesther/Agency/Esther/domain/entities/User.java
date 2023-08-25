@@ -55,7 +55,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Phone> phone = new ArrayList<>();
     @Enumerated(EnumType.STRING)
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private UserRole userRole;
     private String lastPhone;
 

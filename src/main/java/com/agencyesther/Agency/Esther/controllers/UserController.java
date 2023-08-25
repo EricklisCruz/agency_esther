@@ -2,6 +2,7 @@ package com.agencyesther.Agency.Esther.controllers;
 
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import com.agencyesther.Agency.Esther.dto.UserRegistrationDTO;
+import com.agencyesther.Agency.Esther.dto.UsernameDTO;
 import com.agencyesther.Agency.Esther.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,18 @@ public class UserController {
         List<User> users = userService.findAllUsers();
         List<UserRegistrationDTO> usersDTO = users.stream().map(UserRegistrationDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTO);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable Long id) {
+        User user = userService.findUserById(id);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/username")
+    public ResponseEntity<UsernameDTO> getCurrentUsername() {
+        String username = userService.getCurrentUser();
+        return ResponseEntity.ok().body(new UsernameDTO(username));
     }
 
     @Transactional

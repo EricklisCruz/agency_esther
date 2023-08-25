@@ -30,6 +30,16 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public void removeUser(Long id) {
+        boolean existUser = userRepository.existsById(id);
+        if (!existUser) {
+            throw new RuntimeException("User not found!!");
+        } else {
+            userRepository.deleteById(id);
+        }
+
+    }
+
     public User fromDto(UserRegistrationDTO userRegistrationDTO) {
         return new User(userRegistrationDTO.getName(),
                 userRegistrationDTO.getSurname(),

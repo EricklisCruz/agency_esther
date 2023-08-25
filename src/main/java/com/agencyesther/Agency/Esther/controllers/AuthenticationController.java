@@ -1,7 +1,6 @@
 package com.agencyesther.Agency.Esther.controllers;
 
 import com.agencyesther.Agency.Esther.domain.entities.MyUserPrincipal;
-import com.agencyesther.Agency.Esther.domain.entities.User;
 import com.agencyesther.Agency.Esther.dto.AuthenticationDTO;
 import com.agencyesther.Agency.Esther.dto.LoginResponseDTO;
 import com.agencyesther.Agency.Esther.infra.security.TokenService;

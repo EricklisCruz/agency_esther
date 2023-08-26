@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/username")
     public ResponseEntity<UsernameDTO> getCurrentUsername() {
-        String username = userService.getCurrentUser();
+        String username = userService.getCurrentUserName();
         return ResponseEntity.ok().body(new UsernameDTO(username));
     }
 

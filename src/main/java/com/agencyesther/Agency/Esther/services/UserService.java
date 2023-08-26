@@ -7,7 +7,6 @@ import com.agencyesther.Agency.Esther.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,11 +46,16 @@ public class UserService {
 
     }
 
-    public String getCurrentUser() {
+    public User getCurrentUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ((MyUserPrincipal) principal).user();
+        return user;
+    }
+
+    public String getCurrentUserName() {
         try {
-            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             String username;
-            return username = ((MyUserPrincipal) principal).user().getName();
+            return username = getCurrentUser().getName();
 
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage());

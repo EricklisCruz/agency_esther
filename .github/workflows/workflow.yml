@@ -19,10 +19,6 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
       - name: build with maven
-        run: mvn --batch-mode --update-snapshots verify
-               - run: mkdir staging && cp target/*.jar staging
-               - uses: actions/upload-artifact@v3
-                 with:
-                   name: Package
-                   path: staging
+        run: mvn package
+
 

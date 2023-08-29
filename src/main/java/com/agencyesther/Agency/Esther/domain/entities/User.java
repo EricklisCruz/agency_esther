@@ -2,8 +2,10 @@ package com.agencyesther.Agency.Esther.domain.entities;
 
 
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
+import com.agencyesther.Agency.Esther.dto.AddressDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -58,8 +60,10 @@ public class User implements Serializable {
     @Column(nullable = false)
     private UserRole userRole;
     private String lastPhone;
+    @Embedded
+    private Address address;
 
-    public User(String name, String surname, String login, String passwordd, String lastPhone, Integer age, UserRole userRole) {
+    public User(String name, String surname, String login, String passwordd, String lastPhone, Integer age, UserRole userRole, Address address) {
         this.name = name;
         this.surname = surname;
         this.login = login;
@@ -67,6 +71,8 @@ public class User implements Serializable {
         this.lastPhone = lastPhone;
         this.age = age;
         this.userRole = userRole;
+        this.address = new Address(address.getAddress(), address.getArea(), address.getNumber(), address.getZipCode(), address.getCity(),
+                address.getComplement(), address.getState());
 
     }
 

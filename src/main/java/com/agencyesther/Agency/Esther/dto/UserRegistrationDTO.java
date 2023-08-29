@@ -1,7 +1,9 @@
 package com.agencyesther.Agency.Esther.dto;
 
+import com.agencyesther.Agency.Esther.domain.entities.Address;
 import com.agencyesther.Agency.Esther.domain.entities.User;
 import com.agencyesther.Agency.Esther.domain.enums.UserRole;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -28,6 +30,7 @@ public class UserRegistrationDTO {
     private String lastPhone;
     private Integer age;
     private UserRole userRole;
+    private Address address;
 
     public UserRegistrationDTO(User user) {
         this.name = user.getName();
@@ -37,5 +40,9 @@ public class UserRegistrationDTO {
         this.lastPhone = user.getLastPhone();
         this.age = user.getAge();
         this.userRole = user.getUserRole();
+        this.address = new Address(user.getAddress().getAddress(), user.getAddress().getArea(),
+                user.getAddress().getNumber(), user.getAddress().getZipCode(), user.getAddress().getCity(),
+                user.getAddress().getComplement(), user.getAddress().getState());
+
     }
 }

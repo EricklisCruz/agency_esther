@@ -39,6 +39,6 @@ public class Phone implements Serializable {
 
     public Phone(String number, User user) {
         this.number = number;
-        this.user = user;
+        this.setUser(user);
     }
 }
